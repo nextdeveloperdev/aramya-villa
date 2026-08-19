@@ -33,6 +33,7 @@ export default function About() {
                 src={images.about.courtyard.src}
                 alt={images.about.courtyard.alt}
                 fill
+                priority
                 sizes="(min-width: 1024px) 40vw, 90vw"
                 className="object-cover"
               />

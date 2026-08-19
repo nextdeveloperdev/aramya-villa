@@ -31,7 +31,9 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
+# Environment
+.env
+.env*.local
 
 # vercel
 .vercel
@@ -42,3 +44,6 @@ next-env.d.ts
 
 # Source images (optimized output committed instead)
 /raw
+
+# Prisma generated client
+/src/generated

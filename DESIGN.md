@@ -1,0 +1,1 @@
+Guest confirmation emails currently route to the project owner's inbox because Resend requires a verified sending domain, which a fictional business does not have. The production path is implemented and switches automatically when MAIL_FROM is set to a verified-domain address.

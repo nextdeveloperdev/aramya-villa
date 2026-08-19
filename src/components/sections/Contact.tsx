@@ -31,10 +31,11 @@ type Status = "idle" | "sending" | "sent" | "error";
 export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget; // await එකට කලින් capture කරනවා
     setStatus("sending");
-    const data = Object.fromEntries(new FormData(e.currentTarget));
+    const data = Object.fromEntries(new FormData(form));
 
     try {
       const res = await fetch("/api/inquiries", {
@@ -42,8 +43,13 @@ export default function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      setStatus(res.ok ? "sent" : "error");
-      if (res.ok) e.currentTarget.reset();
+
+      if (res.ok) {
+        form.reset();
+        setStatus("sent");
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }

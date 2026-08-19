@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Inquiry {
+  id        String    @id @default(cuid())
+  name      String
+  email     String
+  checkIn   DateTime?
+  checkOut  DateTime?
+  guests    Int       @default(2)
+  suite     String?
+  message   String?
+  ipHash    String?
+  createdAt DateTime  @default(now())
+
+  @@index([createdAt])
+  @@index([email])
+}
