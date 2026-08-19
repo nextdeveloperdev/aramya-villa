@@ -19,6 +19,14 @@ export const images = {
     courtyard: img("about-courtyard", "Open-air teak and cement courtyard at the centre of the villa", 1400, 1750),
     detail: img("about-detail", "Handmade Sri Lankan ceramic bowl and folded linen on a teak surface", 1400, 1400),
   },
+    suites: {
+    ocean: img("suite-ocean", "The Ocean Suite with folding doors open to a sea-facing terrace", 1600, 1067),
+    garden: img("suite-garden", "The Garden Suite opening onto a shaded frangipani garden", 1600, 1067),
+    loft: img("suite-loft", "The Loft Suite beneath exposed teak roof beams and a skylight", 1600, 1067),
+    pool: img("suite-pool", "The Pool Suite with a private plunge pool beyond sliding glass doors", 1600, 1067),
+    tree: img("suite-tree", "The Tree Suite framed by a mature breadfruit canopy", 1600, 1067),
+    master: img("suite-master", "The Master Suite with a freestanding stone bath by the window", 1600, 1067),
+  },
 
   dining: {
     table: img("dining-table", "Long teak dining table set for dinner on the ocean-facing terrace", 1600, 1067),
