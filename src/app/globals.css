@@ -1,26 +1,103 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* ── Palm (primary / dark) ── */
+  --color-palm-50:  #F2F6F4;
+  --color-palm-100: #DCE8E3;
+  --color-palm-200: #B9D0C8;
+  --color-palm-700: #1D5449;
+  --color-palm-800: #17453C;
+  --color-palm-900: #0F2E28;
+  --color-palm-950: #08201B;
+
+  /* ── Shell / Sand (surfaces) ── */
+  --color-shell:    #FAF7F2;
+  --color-sand-100: #F2ECE3;
+  --color-sand-200: #E8DFD2;
+  --color-sand-300: #D9CBB7;
+
+  /* ── Clay (accent / CTA) ── */
+  --color-clay-400: #D08A66;
+  --color-clay-500: #C0714A;
+  --color-clay-600: #A55C38;
+
+  /* ── Ink (text) ── */
+  --color-ink:       #1A1815;
+  --color-ink-muted: #5C574F;
+
+  /* ── Typography ── */
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-sans:    var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* ── Motion ── */
+  --ease-brand: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: var(--color-shell);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  :focus-visible {
+    outline: 2px solid var(--color-clay-500);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-palm-900);
+    color: var(--color-shell);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* සියලුම sections වලට එකම horizontal rhythm එක */
+  .container-x {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 80rem;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px)  { .container-x { padding-inline: 2.5rem; } }
+  @media (min-width: 1280px) { .container-x { padding-inline: 3.5rem; } }
+
+  .section-y { padding-block: 5rem; }
+  @media (min-width: 768px)  { .section-y { padding-block: 7rem; } }
+  @media (min-width: 1280px) { .section-y { padding-block: 8.5rem; } }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-clay-600);
+  }
+}
+
+/* Accessibility: motion අඩු කරන්න කියපු අයට animations නවත්වනවා */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
