@@ -4,6 +4,9 @@ import Suites from "@/components/sections/Suites";
 import Dining from "@/components/sections/Dining";
 import Experiences from "@/components/sections/Experiences";
 import WhyUs from "@/components/sections/WhyUs";
+import Gallery from "@/components/sections/Gallery";
+import Testimonials from "@/components/sections/Testimonials";
+import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   return (
@@ -14,6 +17,9 @@ export default function Home() {
       <Dining />
       <Experiences />
       <WhyUs />
+      <Gallery />
+      <Testimonials />
+      <Contact />
     </>
   );
 }
