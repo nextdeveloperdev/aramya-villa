@@ -38,18 +38,30 @@ export async function POST(req: Request) {
     );
   }
 
-  const { company, checkIn, checkOut, ...d } = parsed.data;
+    const { company, checkIn, checkOut, ...d } = parsed.data;
 
-  const inquiry = await db.inquiry.create({
-    data: {
-      ...d,
-      suite: d.suite || null,
-      message: d.message || null,
-      checkIn: checkIn ? new Date(checkIn) : null,
-      checkOut: checkOut ? new Date(checkOut) : null,
-      ipHash,
-    },
-  });
+  let inquiry;
+  try {
+    inquiry = await db.inquiry.create({
+      data: {
+        ...d,
+        suite: d.suite || null,
+        message: d.message || null,
+        checkIn: checkIn ? new Date(checkIn) : null,
+        checkOut: checkOut ? new Date(checkOut) : null,
+        ipHash,
+      },
+    });
+  } catch (err) {
+    console.error("DB write failed:", err);
+    return NextResponse.json(
+      {
+        error: "Could not save enquiry",
+        detail: err instanceof Error ? err.message : String(err),
+      },
+      { status: 500 }
+    );
+  }
 
   // Email අසාර්ථක වුණත් enquiry එක save වෙලා තියෙනවා
     // Email අසාර්ථක වුණත් enquiry එක save වෙලා තියෙනවා
